@@ -1,0 +1,35 @@
+
+ <div class="pt">
+  <p id="ptp" flyaway>- PROJECTS -</p>    
+    
+</div>
+
+<div class="allprojects">
+    <div class="pd"  ng-repeat="proj in projectList" checkposition>
+     <div class="pcover"></div>
+     <div class="inPd" >
+      <slide source="proj.imgs"></slide>
+      <article class="ptext">
+          <p class="ptitle">{{proj.title}}</p>
+          <div class="overflowhidden">
+              <p class="ptech">
+                <div class="techused">Technologies used:</div>
+                <div class="aftertechused">&nbsp; {{proj.tech}}</div>
+              </p>
+              <ul class="pdescription">
+                <li ng-repeat=" descli in proj.desc">{{descli.d}}</li>     
+              </ul>
+          </div>  
+      </article>
+      </div>    
+    </div>
+    
+    <div class='projectpadding'></div>
+</div>
+    
+
+
+
+<div class="pe">
+  <div><img id="totop" src="./images/siteuse/arrow.png" ng-click="clickup()"></div>       
+</div>

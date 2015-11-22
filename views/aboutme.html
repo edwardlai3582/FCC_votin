@@ -1,0 +1,105 @@
+<div id="aboutmewrap">
+ 
+
+ 
+ 
+ <div class="aboutmediv">
+  <div class="textpart">
+      <div class="bigheader">
+        <p>{{myName}}</p>
+        <div class="linkedin">
+          <img class="lw" src="./images/siteuse/linkedin_w.png">    
+          <a   class="lb" target="_blank"target="_blank" href="{{linkedinlink}}">
+            <img src="./images/siteuse/linkedin.png">
+          </a>  
+        </div>
+      </div>    
+  
+      <div class="notep">
+        <h1>{{myNote}}</h1>
+      </div>
+      <hr>
+      <p class="resumep" ng-click="opentheater()">resume (pdf)</p>
+      <p class="emailp">email: </p><p class="emailpa">{{email}}</p>
+      <div class="textpartpadding"></div>
+  </div>
+  <div class="picpart">
+    <div class="gallery">
+      <div class="gallerywindow" id="fml">
+      <div class="flipper">
+			<div class="front" >
+			<img ng-src="{{frontp}}">
+			<p class="gallerydescription">{{frontdescription}}</p>
+			</div>
+			<div class="back" >
+			<img ng-src="{{backp}}">
+			<p class="gallerydescription">{{backdescription}}</p>
+			</div>
+		</div>
+    </div>
+     <!--
+      <div class="gallerywindow" ng-repeat="image in gallery" ng-show="selected.value== $index">
+        <img src="{{image.image}}">
+        <p class="gallerydescription">{{image.description}}</p>    
+      </div>
+      -->
+      <div class="gallerybar">
+        <div class="buttonbound">    
+          <div class="gallerybutton" ng-repeat="image in gallery" ng-click="selected.value= $index" ng-style="{ 'background-color' : (selected.value== $index) ? 'black' : 'grey' }" change-directive="{{$index}}">
+        </div>     
+        </div>          
+      </div>    
+    </div>  
+  </div>        
+</div>
+
+<div class="sendmemail" ng-style="{ 'background-color' : showform ? 'rgb(172,207,209)' : 'none', 'z-index':  showform ?'3':'1'}">
+       <div class="mailtop">
+         <div class="maillh1wrapper" ng-click="showform=!showform;" onclick="document.querySelector('#flipqq').classList.toggle('hover');">
+           <p class="maillh1">send me a mail</p>
+         </div> 
+       </div>
+       <hr>
+       <!--<img class="formtriangle" src="./pics/siteuse/up.png" ng-click="showform=!showform">-->
+       <!---------------------------------------------------------------------------------------->
+       <div class="vflip-container" id="flipqq" onclick="document.querySelector('#flipqq').classList.toggle('hover');" ng-click="showform=!showform" >
+            <div class="vflipper" >
+                <div class="vfront">
+                    <!-- front content -->
+                    <img  src="./images/siteuse/up.png" >
+                </div>
+                <div class="vback">
+                    <!-- back content -->
+                    <img  src="./images/siteuse/down.png" >
+                </div>
+            </div>
+       </div>
+       
+       <div id="cross" onclick="document.querySelector('#flipqq').classList.toggle('hover');" ng-click="showform=!showform" ng-show="showform">
+                <div id="a"></div>
+                <div id="b"></div>
+       </div>
+       <!--ng-class="{showform?after-flip-container:before-flip-container}"-->
+       
+       <!---------------------------------------------------------------------------------------->
+     <form name="mailform" id="mailform" ng-submit="sendmail()" ng-show="showform" ng-cloak novalidate>
+    Name:<br>
+    <input type="text" ng-model="name" name="name" placeholder="your name"><br>
+    email:<br>
+    <input type="text" ng-model="mailaddress" name="mailaddress" placeholder="your email"><br>
+    Message:<br>
+    <textarea type="text" ng-model="message" name="message" placeholder="your message" ></textarea><br><br>
+    <input id="mailsubmit" type="submit" value="Send">
+    <!--<input type="reset" value="Reset">-->
+    </form>
+    <div class="mailpadding" ng-show="showform"></div>   
+</div>  
+
+</div>
+
+<theater pdfsrc="{{resume}}"></theater>
+
+
+
+
+
