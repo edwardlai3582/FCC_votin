@@ -1,4 +1,4 @@
-app.factory('auth', ['$http', '$window', function($http, $window){
+app.factory('auth', ['$http', '$window', '$state', function($http, $window, $state){
     var auth = {};
 
     auth.saveToken = function (token){
@@ -44,6 +44,7 @@ app.factory('auth', ['$http', '$window', function($http, $window){
     
     auth.logOut = function(){
       $window.localStorage.removeItem('voting-app-token');
+      $state.go('firstpage');    
     };
     
     return auth;
