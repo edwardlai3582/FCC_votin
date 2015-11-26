@@ -7,7 +7,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     .state('firstpage', {
       url: '/firstpage',
       templateUrl: 'htmls/firstpage.html',
-      controller: 'firstpageController'
+      controller: 'firstpageController',
+      onEnter: ['$state', 'auth', function($state, auth){
+        if(auth.isLoggedIn()){
+          $state.go('userpage');
+        }
+      }]
     })
     .state('login', {
       url: '/login',
@@ -15,7 +20,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'loginController',
       onEnter: ['$state', 'auth', function($state, auth){
         if(auth.isLoggedIn()){
-          $state.go('firstpage');
+          $state.go('userpage');
         }
       }]
     })
@@ -25,6 +30,16 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'signupController',
       onEnter: ['$state', 'auth', function($state, auth){
         if(auth.isLoggedIn()){
+          $state.go('userpage');
+        }
+      }]
+    })
+    .state('userpage', {
+      url: '/userpage',
+      templateUrl: './htmls/userpage.html',
+      controller: 'userpageController',
+      onEnter: ['$state', 'auth', function($state, auth){
+        if(!auth.isLoggedIn()){
           $state.go('firstpage');
         }
       }]

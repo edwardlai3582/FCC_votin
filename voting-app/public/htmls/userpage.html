@@ -1,0 +1,61 @@
+<div class="jumbotron" id="userpage">
+    <div class="page-header">
+        <h1>Hello {{user.username}}</h1>
+    </div>
+   
+    <div id="yourpolls">
+        <p>Your polls</p>
+    </div>
+   
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="poll in user.polls">
+               <a href="" class="polllink">{{poll}}</a>
+               <button class="btn btn-xs btn-warning trash">
+                   <span class="glyphicon glyphicon-trash"></span>
+               </button> 
+        </li>
+    </ul>
+
+    <div id="newpoll">
+        <p>Add new poll</p>
+    </div>
+    <div id="pollform">   
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="control-label-left col-sm-offset-1 col-sm-4" for="poll_name">Name your poll:</label>
+                <div class="col-sm-offset-1 col-sm-9">
+                    <input type="email" class="form-control" placeholder="What is your favorite brand?">
+                </div>
+            </div>
+            <div class="form-group" id="optionsPart">
+                <label class="control-label-left col-sm-offset-1 col-sm-4" for="options">Options:</label>
+                <div class="col-sm-9 col-sm-offset-1">          
+                    <input  class="form-control"  placeholder="Coke" >
+                </div>
+                <div class="col-sm-9 col-sm-offset-1">          
+                    <input  class="form-control"  placeholder="Pepsi" >
+                </div>
+            </div>
+            <div class="form-group">        
+                <div class="col-sm-offset-5 col-sm-7">
+                    <button type="button" class="btn btn-default" add-option>Add option</button>
+                </div>
+            </div>
+            <div class="form-group">        
+                <div class="col-sm-offset-5 col-sm-7">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+        </form>       
+    </div>        
+</div>
+
+
+
+            <!--
+              <button class="btn btn-xs btn-warning">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+           
+-->
+

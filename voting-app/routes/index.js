@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 var User = mongoose.model('User');
+var Poll = mongoose.model('Poll');
 
 var jwt = require('express-jwt');
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
@@ -49,11 +50,11 @@ router.post('/login', function(req, res, next){
 });
 
 
-/*
-router.post('/posts', auth, function(req, res, next) {
-  var post = new Post(req.body);
-  post.author = req.payload.username;
-}
-*/
+
+router.get('/polls', auth, function(req, res, next) {
+  var poll = new Poll(req.body);
+  post.username = req.payload.username;
+});
+
 ////////////////////////////////////////
 module.exports = router;

@@ -1,0 +1,33 @@
+#userpage{
+    padding-top: 50px;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 30px;
+    line-height: 30px;
+    background-color:floralwhite;
+}
+
+#yourpolls{
+    font-size: 20px;
+    margin: 15px;
+}
+
+.polllink{
+    text-decoration:none !important;
+
+}
+
+.trash{
+    float: right;
+}
+
+#newpoll{
+    font-size: 20px;
+    margin: 15px;
+    color:darkturquoise;
+    margin-top: 60px;
+}
+
+#pollform{
+    
+}

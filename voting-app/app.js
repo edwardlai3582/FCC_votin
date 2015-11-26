@@ -10,6 +10,8 @@ mongoose.connect('mongodb://localhost/votin');
 
 var passport = require('passport');
 require('./models/Users');
+require('./models/Options');
+require('./models/Polls');
 require('./config/passport');
 
 var routes = require('./routes/index');
