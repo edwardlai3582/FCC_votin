@@ -1,9 +1,13 @@
 var mongoose = require('mongoose');
 
 var PollSchema = new mongoose.Schema({
-  username: String,
+  userId: String,
   pollTitle: String,
-  options: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Option' }]
+  //options: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Option' }]
+  options:[{
+    optionTitle : String,
+    votes: {type: Number, default: 0}  
+  }]    
   
 });
 

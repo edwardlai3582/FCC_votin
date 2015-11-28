@@ -8,8 +8,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/firstpage',
       templateUrl: 'htmls/firstpage.html',
       controller: 'firstpageController',
-      onEnter: ['$state', 'auth', function($state, auth){
-        if(auth.isLoggedIn()){
+      onEnter: ['$state', 'authF', function($state, authF){
+        if(authF.isLoggedIn()){
           $state.go('userpage');
         }
       }]
@@ -18,8 +18,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/login',
       templateUrl: 'htmls/login.html',
       controller: 'loginController',
-      onEnter: ['$state', 'auth', function($state, auth){
-        if(auth.isLoggedIn()){
+      onEnter: ['$state', 'authF', function($state, authF){
+        if(authF.isLoggedIn()){
           $state.go('userpage');
         }
       }]
@@ -28,8 +28,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/signup',
       templateUrl: './htmls/signup.html',
       controller: 'signupController',
-      onEnter: ['$state', 'auth', function($state, auth){
-        if(auth.isLoggedIn()){
+      onEnter: ['$state', 'authF', function($state, authF){
+        if(authF.isLoggedIn()){
           $state.go('userpage');
         }
       }]
@@ -38,11 +38,27 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/userpage',
       templateUrl: './htmls/userpage.html',
       controller: 'userpageController',
-      onEnter: ['$state', 'auth', function($state, auth){
-        if(!auth.isLoggedIn()){
+      onEnter: ['$state', 'authF', function($state, authF){
+        if(!authF.isLoggedIn()){
           $state.go('firstpage');
         }
-      }]
+      }],
+      resolve: {
+        pollsPromise: ['pollF', function(pollF){
+          return pollF.getAllPolls();
+        }]
+      }
+    })
+    .state('polls', {
+      url: '/polls/{id}',
+      templateUrl: './htmls/polls.html',
+      controller: 'pollsController',
+      resolve: {
+        pollSingle: ['$stateParams', 'pollF', function($stateParams, pollF) {
+          
+            return pollF.getPoll($stateParams.id); //"gan";
+        }]
+      }
     });
 
   $urlRouterProvider.otherwise('firstpage');

@@ -1,8 +1,8 @@
-app.controller('loginController', ['$scope','$state','auth',function($scope, $state, auth){
+app.controller('loginController', ['$scope','$state','authF',function($scope, $state, authF){
     $scope.user = {};
 
     $scope.logIn = function(){
-        auth.logIn($scope.user).error(function(error){
+        authF.logIn($scope.user).error(function(error){
             $scope.error = error;
         }).then(function(){
             $state.go('firstpage');

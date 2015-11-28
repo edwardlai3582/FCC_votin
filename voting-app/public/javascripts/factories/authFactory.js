@@ -1,4 +1,4 @@
-app.factory('auth', ['$http', '$window', '$state', function($http, $window, $state){
+app.factory('authF', ['$http', '$window', '$state', function($http, $window, $state){
     var auth = {};
 
     auth.saveToken = function (token){
@@ -27,6 +27,15 @@ app.factory('auth', ['$http', '$window', '$state', function($http, $window, $sta
         var payload = JSON.parse($window.atob(token.split('.')[1]));
 
         return payload.username;
+      }
+    };
+    
+    auth.currentUserId = function(){
+      if(auth.isLoggedIn()){
+        var token = auth.getToken();
+        var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+        return payload._id;
       }
     };
     

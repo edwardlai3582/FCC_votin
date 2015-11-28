@@ -6,7 +6,7 @@
     <script src="javascripts/vendor/jquery-2.1.4.js"></script>  
     <script src="javascripts/vendor/angular.min.js"></script>
     <script src="javascripts/vendor/angular-ui-router.min.js"></script>
-    <script src="javascripts/vendor/angular-messages.min.js"></script>
+    <script src="javascripts/vendor/d3.min.js"></script>
       
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -38,7 +38,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-              <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
+              <li ng-show="isLoggedIn()"><a href="/#/userpage" data-toggle="collapse" data-target="#navbar.in">{{ currentUser() }}</a></li>
               <li ng-show="isLoggedIn()"><a href="" data-toggle="collapse" data-target="#navbar.in" ng-click="logOut()">Log Out</a></li>
               <li ng-hide="isLoggedIn()"><a href="/#/signup" data-toggle="collapse" data-target="#navbar.in">SignUp</a></li>
               <li ng-hide="isLoggedIn()"><a href="/#/login" data-toggle="collapse" data-target="#navbar.in">Login</a></li>
@@ -47,7 +47,7 @@
         </div><!--/.container-fluid -->
       </nav>
 
-      <!-- Main component for a primary marketing message or call to action -->
+      
       <div ui-view></div>
     </div> <!-- /container -->
      
@@ -61,9 +61,9 @@
     <script src="javascripts/controllers/loginController.js"></script>
     <script src="javascripts/controllers/signupController.js"></script>
     <script src="javascripts/controllers/userpageController.js"></script>
+    <script src="javascripts/controllers/pollsController.js"></script>
     
     <!-- Directives -->
-    <script src="javascripts/directives/addOptionDirective.js"></script>
     
     <!-- Factories/Services -->
     <script src="javascripts/factories/authFactory.js"></script>

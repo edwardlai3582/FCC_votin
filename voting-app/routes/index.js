@@ -52,9 +52,44 @@ router.post('/login', function(req, res, next){
 
 
 router.get('/polls', auth, function(req, res, next) {
-  var poll = new Poll(req.body);
-  post.username = req.payload.username;
+    console.log("auth id="+ req.payload._id); 
+    Poll.find({ 'userId': req.payload._id },function(err, polls){
+        if(err){ return next(err); }
+        res.json(polls);
+    });
 });
 
+/* POST new poll */
+router.post('/polls', auth, function(req, res, next){
+      var poll = new Poll();
+      poll.userId = req.body.userId;
+      poll.pollTitle = req.body.pollTitle;
+      poll.options = req.body.options;
+      poll.save(function (err,poll){ 
+        if(err){ console.log(err);  return next(err); }
+        res.json(poll);  
+        console.log("poll post success");  
+      });
+});
+
+/* GET single poll */
+router.get('/polls/:pollid', function(req, res) {
+  //res.send(req.params.version);
+    console.log("req.params.pollid= "+req.params.pollid);
+    Poll.find({ '_id': req.params.pollid },function(err, poll){
+        if(err){ return next(err); }
+        console.log('found poll='+poll);
+        res.json(poll);
+    });  
+});
+
+/* DELETE sigle poll */
+router.delete('/polls/:pollid', auth, function(req, res, next) {
+    Poll.findOneAndRemove({'_id': req.params.pollid}, function(err){
+        if(err){ return next(err); }
+        console.log("delete success");
+        res.send("delete success");
+    });
+});
 ////////////////////////////////////////
 module.exports = router;
