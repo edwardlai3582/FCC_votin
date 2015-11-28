@@ -1,15 +1,8 @@
 app.factory('pollF', ['$http','authF',function($http,authF){
-  var o = {};
+    var o = {};
     
-  o.polls=[];//["which is better","which is longe rdfbmfdbdfbdfbdf bfxbfdgndddddfxgn?"];
-  
-  /*
-  o.getAll = function() {
-    return $http.get('/polls').success(function(data){
-      angular.copy(data, o.polls);
-    });
-  }; 
-  */
+    o.polls=[];//["which is better","which is longe rdfbmfdbdfbdfbdf bfxbfdgndddddfxgn?"];
+
     o.getAllPolls = function() {
         return $http.get('/polls',{
             headers: {Authorization: 'Bearer '+authF.getToken()}
@@ -32,20 +25,13 @@ app.factory('pollF', ['$http','authF',function($http,authF){
     };
     
     o.deletePoll = function(id) {
-        return $http.delete('/polls/' + id,{
+        return $http.delete('/polls/' + id, {
             headers: {Authorization: 'Bearer '+authF.getToken()}
         });
     };
-  /*    
-  o.upvote = function(poll) {
-    return $http.put('/polls/' + poll._id + '/upvote')
-    .success(function(data){
-      poll.upvotes += 1;
-    });
-  };
-
     
-  
+    
+  /*     
   o.addComment = function(id, comment) {
     return $http.poll('/polls/' + id + '/comments', comment);
   };
@@ -58,5 +44,5 @@ app.factory('pollF', ['$http','authF',function($http,authF){
     });
   };    
 */     
-  return o;
+    return o;
 }]);

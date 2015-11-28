@@ -1,5 +1,5 @@
 
-var app = angular.module('MyApp', ['ui.router','ngMessages']);
+var app = angular.module('MyApp', ['ui.router']);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
