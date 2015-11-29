@@ -2,13 +2,16 @@ app.controller('userpageController', ['$scope','authF','pollF',function($scope, 
     $scope.user = {};
     $scope.user.username=authF.currentUser();
     $scope.user.polls=pollF.polls; 
-    
     $scope.newpoll={};
-    $scope.newpoll.userId=authF.currentUserId();
-    $scope.optionsTitle=[{optionTitle:"Coke"},{optionTitle:"Pepsi"}];
     $scope.newpoll.options=[];
-    
     $scope.newpollLink="";
+    $scope.optionsTitle=[{optionTitle:"Coke"},{optionTitle:"Pepsi"}];
+    
+    $scope.noPoll= function(){
+        if($scope.user.polls.length===0){ return true;}
+        return false;
+    }
+    
     
     $scope.addOption= function(){
         $scope.optionsTitle.push({optionTitle:"New option"});
@@ -16,6 +19,7 @@ app.controller('userpageController', ['$scope','authF','pollF',function($scope, 
     }
     
     $scope.createPoll=function(){
+        $scope.newpoll.userId=authF.currentUserId();
         pollF.createPoll($scope.newpoll).success(function(data){
             $scope.newpollLink="http://localhost:3000/#/polls/"+data._id;
             $scope.user.polls.push(data);

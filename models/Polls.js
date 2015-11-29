@@ -12,8 +12,4 @@ var PollSchema = new mongoose.Schema({
   
 });
 
-PollSchema.methods.vote = function(cb) {
-
-};
-
 mongoose.model('Poll', PollSchema);

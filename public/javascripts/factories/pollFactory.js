@@ -1,7 +1,7 @@
 app.factory('pollF', ['$http','authF',function($http,authF){
     var o = {};
     
-    o.polls=[];//["which is better","which is longe rdfbmfdbdfbdfbdf bfxbfdgndddddfxgn?"];
+    o.polls=[];
 
     o.getAllPolls = function() {
         return $http.get('/polls',{
@@ -35,18 +35,6 @@ app.factory('pollF', ['$http','authF',function($http,authF){
             headers: {Authorization: 'Bearer '+authF.getToken()}
         });
     }; 
-  /*     
-  o.addComment = function(id, comment) {
-    return $http.poll('/polls/' + id + '/comments', comment);
-  };
-  
-    
-  o.votePoll = function(poll, comment) {
-    return $http.put('/polls/' + poll._id + '/comments/'+ comment._id +       '/upvote')
-    .success(function(data){
-      comment.upvotes += 1;
-    });
-  };    
-*/     
+   
     return o;
 }]);

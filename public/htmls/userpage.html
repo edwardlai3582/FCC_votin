@@ -3,7 +3,7 @@
         <h1>Hello {{user.username}}</h1>
     </div>
    
-    <div id="yourpolls">
+    <div id="yourpolls" ng-hide="noPoll()">
         <p>Your polls</p>
     </div>
    
@@ -24,13 +24,13 @@
             <div class="form-group">
                 <label class="control-label-left col-sm-offset-1 col-sm-4" for="poll_name">Name your poll:</label>
                 <div class="col-sm-offset-1 col-sm-9">
-                    <input  class="form-control" placeholder="What is your favorite band" ng-model="newpoll.pollTitle">
+                    <input  class="form-control" placeholder="What is your favorite band" ng-model="newpoll.pollTitle" required>
                 </div>
             </div>
             <div class="form-group" id="optionsPart" >
                <label class="control-label-left col-sm-offset-1 col-sm-4" for="options">Options:</label>
                 <div class="col-sm-9 col-sm-offset-1" ng-repeat="option in optionsTitle track by $index">          
-                    <input  class="form-control"  placeholder="{{option.optionTitle}}" ng-model="newpoll.options[$index].optionTitle">
+                    <input  class="form-control"  placeholder="{{option.optionTitle}}" ng-model="newpoll.options[$index].optionTitle" required>
                 </div>
             </div>
             <div class="form-group">        
