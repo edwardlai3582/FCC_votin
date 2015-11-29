@@ -5,6 +5,41 @@
     <div class="jumbotron" id="plotWrapper">
         
     </div>
-     
+    <div id="optionform" ng-show="isLoggedIn()&&notYetVoted()">   
+        <form class="form-horizontal" role="form" ng-submit="vote()">
+            <div class="form-group" id="optionsPart" >
+               <label class="control-label-left col-sm-offset-1 col-sm-4" for="options">Options:</label>
+                <div class="col-sm-9 col-sm-offset-1" ng-repeat="option in poll.options track by $index">          
+                    <div class="radio">
+                        <label class="radio "><input type="radio" name="optradio" value="{{option._id}}" ng-model="formdata.voteId">
+                            {{option.optionTitle}}
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-9 col-sm-offset-1">          
+                    <div class="radio">
+                        <label><input type="radio" name="optradio" value="" ng-model="formdata.voteId">
+                            Other:
+                            <input type="text" ng-model="formdata.other" ng-focus="formdata.voteId=''" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">        
+                <div class="col-sm-offset-5 col-sm-7">
+                    <button type="submit" class="btn btn-default">Vote</button>
+                </div>
+            </div>
+        </form>       
+    </div>
+    <div id="optionform" ng-hide="isLoggedIn()">
+        <a href="/#/login" data-toggle="collapse" data-target="#navbar.in">Login</a> to vote.
+    </div>
+    <div id="optionform" ng-show="isLoggedIn()&&!notYetVoted()">
+        Voted already.
+    </div>
+    <div ng-show="error" class="alert alert-danger row">
+        <span>{{ error.message }}</span>
+    </div>    
 </div>
 

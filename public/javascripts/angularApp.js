@@ -55,8 +55,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'pollsController',
       resolve: {
         pollSingle: ['$stateParams', 'pollF', function($stateParams, pollF) {
-          
-            return pollF.getPoll($stateParams.id); //"gan";
+            return pollF.getPoll($stateParams.id);
         }]
       }
     });

@@ -30,7 +30,11 @@ app.factory('pollF', ['$http','authF',function($http,authF){
         });
     };
     
-    
+    o.vote = function(pollId, option) {
+        return $http.put('/polls/' + pollId + '/options/'+ option, null, {
+            headers: {Authorization: 'Bearer '+authF.getToken()}
+        });
+    }; 
   /*     
   o.addComment = function(id, comment) {
     return $http.poll('/polls/' + id + '/comments', comment);

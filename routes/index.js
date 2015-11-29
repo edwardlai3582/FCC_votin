@@ -91,5 +91,47 @@ router.delete('/polls/:pollid', auth, function(req, res, next) {
         res.send("delete success");
     });
 });
+
+/* PUT vote option */ 
+router.put('/polls/:pollid/options/:optionid', auth, function(req, res, next) {
+    console.log("optionid= "+req.params.optionid);
+    Poll.findOne({_id: req.params.pollid },function(err, poll){
+
+        var options = poll.options; 
+        var index = null;
+
+        for (var i in poll.userVoted) {
+            if (poll.userVoted[i] == req.payload._id) {
+                return;
+            }
+        }
+        
+        for (var i in options) {
+            console.log("options[i]._id= "+options[i]._id);
+            if (options[i]._id == req.params.optionid) {
+                var index = i;
+                break;
+            }
+        }
+
+        if(index!==null){
+            options[i].votes++;
+            poll.userVoted.push(req.payload._id);  
+            poll.save();
+            console.log("vote success");
+            res.send("vote success");  
+        }
+        else{
+            console.log("index is null");
+            poll.options.push({optionTitle : req.params.optionid, votes:1 });
+            poll.userVoted.push(req.payload._id);
+            poll.save();
+            console.log("add new option success");
+            res.send("add new option success");  
+        }        
+
+    });
+});
+
 ////////////////////////////////////////
 module.exports = router;
