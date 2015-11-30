@@ -13,6 +13,8 @@ app.controller('pollsController', ['$scope','authF','pollF','pollSingle',functio
         }
         return true;
     }
+
+    
     
     $scope.vote= function(){
         console.log("dfgdfg");

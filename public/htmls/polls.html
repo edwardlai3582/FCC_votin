@@ -3,7 +3,7 @@
         <h1>{{poll.pollTitle}}</h1>
     </div>
     <div class="jumbotron" id="plotWrapper">
-        
+        <div d3-bars bar-height="20" bar-padding="5" data="poll.options"></div>
     </div>
     <div id="optionform" ng-show="isLoggedIn()&&notYetVoted()">   
         <form class="form-horizontal" role="form" ng-submit="vote()">
@@ -40,6 +40,7 @@
     </div>
     <div ng-show="error" class="alert alert-danger row">
         <span>{{ error.message }}</span>
-    </div>    
+    </div>
+        
 </div>
 
