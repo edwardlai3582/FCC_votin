@@ -8,21 +8,12 @@ app.directive('d3Bars', ['$window', '$timeout',
         onClick: '&'
       },
       link: function(scope, ele, attrs) {
-        //d3Service.d3().then(function(d3) {
         var d3 = $window.d3;  
-                    // hard-code data
-          /*
-          scope.data = [
-            {name: "Greg", score: 98},
-            {name: "Ari", score: 96},
-            {name: 'Q', score: 75},
-            {name: "Loser", score: 48}
-          ];
-          */
+
           var renderTimeout;
-          var margin = parseInt(attrs.margin) || 20,
-              barHeight = parseInt(attrs.barHeight) || 20,
-              barPadding = parseInt(attrs.barPadding) || 5;
+          var margin = parseInt(attrs.margin) || 30,
+              barHeight = parseInt(attrs.barHeight) || 44,
+              barPadding = parseInt(attrs.barPadding) || 15;
 
           var svg = d3.select(ele[0])
             .append('svg')
@@ -64,9 +55,6 @@ app.directive('d3Bars', ['$window', '$timeout',
                 .data(data)
                 .enter()
                   .append('rect')
-                  .on('click', function(d,i) {
-                    return scope.onClick({item: d});
-                  })
                   .attr('height', barHeight)
                   .attr('width', 140)
                   .attr('x', Math.round(margin/2))
@@ -87,14 +75,13 @@ app.directive('d3Bars', ['$window', '$timeout',
                   .append('text')
                   .attr('fill', '#fff')
                   .attr('y', function(d,i) {
-                    return i * (barHeight + barPadding) + 15;
+                    return i * (barHeight + barPadding) + 30;
                   })
-                  .attr('x', 15)
+                  .attr('x', 20)
                   .text(function(d) {
-                    return d.optionTitle + " (votes: " + d.votes + ")";
+                    return d.optionTitle + " (" + d.votes + ")";
                   });
             }, 200);
           };
-        //});
       }}
 }])

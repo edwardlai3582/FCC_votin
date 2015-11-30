@@ -6,3 +6,22 @@
     line-height: 30px;
     background-color:floralwhite;
 }
+
+#plotWrapper{
+    padding: 0px;  
+}
+
+#d3area{
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    top:10px;
+}
+
+#radioOther{
+    padding: 0;
+}
+
+#other{
+
+}

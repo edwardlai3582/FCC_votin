@@ -3,7 +3,7 @@
         <h1>{{poll.pollTitle}}</h1>
     </div>
     <div class="jumbotron" id="plotWrapper">
-        <div d3-bars bar-height="20" bar-padding="5" data="poll.options"></div>
+        <div id="d3area" d3-bars data="poll.options"></div>
     </div>
     <div id="optionform" ng-show="isLoggedIn()&&notYetVoted()">   
         <form class="form-horizontal" role="form" ng-submit="vote()">
@@ -16,17 +16,19 @@
                         </label>
                     </div>
                 </div>
-                <div class="col-sm-9 col-sm-offset-1">          
-                    <div class="radio">
+                <div class="col-sm-9 col-sm-offset-1" id="radioOther">          
+                    <div class="radio col-sm-3" >
                         <label><input type="radio" name="optradio" value="" ng-model="formdata.voteId">
                             Other:
-                            <input type="text" ng-model="formdata.other" ng-focus="formdata.voteId=''" />
                         </label>
+                    </div>
+                    <div class="col-sm-6" id="other">
+                        <input  class="col-xs-12" type="text" ng-model="formdata.other" ng-focus="formdata.voteId=''"  />
                     </div>
                 </div>
             </div>
             <div class="form-group">        
-                <div class="col-sm-offset-5 col-sm-7">
+                <div class="col-sm-offset-1 col-sm-7">
                     <button type="submit" class="btn btn-default">Vote</button>
                 </div>
             </div>
